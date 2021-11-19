@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 char *get_input(int n) {
-  char *input = malloc(sizeof (int[n]));
+  char *input = malloc(sizeof (char[n]));
   fgets(input, n, stdin);
   return input;
 }
