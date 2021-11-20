@@ -5,6 +5,7 @@
 char *get_input(int n) {
   char *input = malloc(sizeof (char[n]));
   fgets(input, n, stdin);
+  input = strsep(&input, "\n");
   return input;
 }
 
