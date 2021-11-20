@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *get_input(int n) {
-  char *input = malloc(sizeof (char[n]));
-  fgets(input, n, stdin);
+char *get_input(char *prompt, int max_size) {
+  printf("%s ", prompt);
+  char *input = malloc(sizeof (char[max_size]));
+  fgets(input, max_size, stdin);
   input = strsep(&input, "\n");
   return input;
 }
@@ -33,8 +34,7 @@ char **get_words(char *string, int word_count) {
 }
 
 int main() {
-  printf("input thingy: ");
-  char *bobby = get_input(2187);
+  char *bobby = get_input("input cheese:", 2187);
   int bobby_word_count = get_word_count(bobby);
   char **bobby_words = get_words(bobby, bobby_word_count);
   for (int i = 0; i < bobby_word_count; i ++) {
