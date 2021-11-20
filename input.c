@@ -32,12 +32,16 @@ char **get_words(char *string, int word_count) {
   return words;
 }
 
+char **get_input(char *prompt, int max_size) {
+  char *input_string = get_input_string(prompt, max_size);
+  int word_count = split(input_string);
+  return get_words(input_string, word_count);
+}
+
 int main() {
-  char *bobby = get_input_string("input cheese:", 2187);
-  int bobby_word_count = split(bobby);
-  char **bobby_words = get_words(bobby, bobby_word_count);
-  for (int i = 0; bobby_words[i]; i ++) {
-    printf("(%s)\n", bobby_words[i]);
+  char **bobby = get_input("input cheese:", 2187);
+  for (int i = 0; bobby[i]; i ++) {
+    printf("(%s)\n", bobby[i]);
   }
   return 0;
 }
