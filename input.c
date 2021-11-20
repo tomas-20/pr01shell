@@ -22,7 +22,7 @@ int get_word_count(char *string) {
 }
 
 char **get_words(char *string, int word_count) {
-  char **words = malloc(sizeof (char[word_count]));
+  char **words = malloc(sizeof (char *[word_count]));
   for (int i = 0; i < word_count; i ++) {
     while (!*string) {
       string ++;
