@@ -13,12 +13,10 @@ int get_word_count(char *string) {
   int word_count = 0;
   while (string) {
     char *portion = strsep(&string, " ");
-    printf("(%s)\n", portion);
     if (*portion) {
       word_count ++;
     }
   }
-  printf("word count: %d\n", word_count);
   return word_count;
 }
 
@@ -40,7 +38,7 @@ int main() {
   int bobby_word_count = get_word_count(bobby);
   char **bobby_words = get_words(bobby, bobby_word_count);
   for (int i = 0; i < bobby_word_count; i ++) {
-    printf("[%s]\n", bobby_words[i]);
+    printf("(%s)\n", bobby_words[i]);
   }
   return 0;
 }
