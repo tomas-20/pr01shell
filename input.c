@@ -22,9 +22,25 @@ int get_word_count(char *string) {
   return word_count;
 }
 
+char **get_words(char *string, int word_count) {
+  char **words = malloc(sizeof (char[word_count]));
+  for (int i = 0; i < word_count; i ++) {
+    while (!*string) {
+      string ++;
+    }
+    words[i] = string;
+    string += strlen(string);
+  }
+  return words;
+}
+
 int main() {
   printf("input thingy: ");
   char *bobby = get_input(2187);
-  int bobby_words = get_word_count(bobby);
+  int bobby_word_count = get_word_count(bobby);
+  char **bobby_words = get_words(bobby, bobby_word_count);
+  for (int i = 0; i < bobby_word_count; i ++) {
+    printf("[%s]\n", bobby_words[i]);
+  }
   return 0;
 }
