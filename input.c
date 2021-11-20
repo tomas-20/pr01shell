@@ -20,7 +20,7 @@ int split(char *string) {
 }
 
 char **get_words(char *string, int word_count) {
-  char **words = malloc(sizeof (char *[word_count]));
+  char **words = malloc(sizeof (char *[word_count + 1]));
   for (int i = 0; i < word_count; i ++) {
     while (!*string) {
       string ++;
@@ -28,6 +28,7 @@ char **get_words(char *string, int word_count) {
     words[i] = string;
     string = strchr(string, '\0');
   }
+  words[word_count] = NULL;
   return words;
 }
 
@@ -35,7 +36,7 @@ int main() {
   char *bobby = get_input("input cheese:", 2187);
   int bobby_word_count = split(bobby);
   char **bobby_words = get_words(bobby, bobby_word_count);
-  for (int i = 0; i < bobby_word_count; i ++) {
+  for (int i = 0; bobby_words[i]; i ++) {
     printf("(%s)\n", bobby_words[i]);
   }
   return 0;
