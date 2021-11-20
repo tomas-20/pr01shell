@@ -8,21 +8,22 @@ char *get_input(int n) {
   return input;
 }
 
-void cheese(char *string) {
-  int size = 0;
+int get_word_count(char *string) {
+  int word_count = 0;
   while (string) {
     char *portion = strsep(&string, " ");
     printf("(%s)\n", portion);
     if (*portion) {
-      size ++;
+      word_count ++;
     }
   }
-  printf("size is:%d\n", size);
+  return word_count;
 }
 
 int main() {
   printf("input thingy: ");
   char *bobby = get_input(2187);
-  cheese(bobby);
+  int bobby_words = get_word_count(bobby);
+  printf("%d\n", bobby_words);
   return 0;
 }
