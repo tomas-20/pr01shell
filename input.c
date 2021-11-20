@@ -10,7 +10,7 @@ char *get_input(char *prompt, int max_size) {
   return input;
 }
 
-int get_word_count(char *string) {
+int split(char *string) {
   int word_count = 0;
   while (string) {
     char *portion = strsep(&string, " ");
@@ -35,7 +35,7 @@ char **get_words(char *string, int word_count) {
 
 int main() {
   char *bobby = get_input("input cheese:", 2187);
-  int bobby_word_count = get_word_count(bobby);
+  int bobby_word_count = split(bobby);
   char **bobby_words = get_words(bobby, bobby_word_count);
   for (int i = 0; i < bobby_word_count; i ++) {
     printf("(%s)\n", bobby_words[i]);
