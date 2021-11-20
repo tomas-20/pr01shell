@@ -12,7 +12,7 @@ char *get_input(char *prompt, int max_size) {
 int split(char *string) {
   int word_count = 0;
   while (string) {
-    if (*strsep(&string, " ") != '\0') {
+    if (*strsep(&string, " ")) {
       word_count ++;
     }
   }
@@ -22,7 +22,7 @@ int split(char *string) {
 char **get_words(char *string, int word_count) {
   char **words = malloc(sizeof (char *[word_count]));
   for (int i = 0; i < word_count; i ++) {
-    while (*string == '\0') {
+    while (!*string) {
       string ++;
     }
     words[i] = string;
