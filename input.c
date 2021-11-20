@@ -6,15 +6,13 @@ char *get_input(char *prompt, int max_size) {
   printf("%s ", prompt);
   char *input = malloc(sizeof (char[max_size]));
   fgets(input, max_size, stdin);
-  input = strsep(&input, "\n");
-  return input;
+  return strsep(&input, "\n");
 }
 
 int split(char *string) {
   int word_count = 0;
   while (string) {
-    char *portion = strsep(&string, " ");
-    if (*portion) {
+    if (*strsep(&string, " ")) {
       word_count ++;
     }
   }
