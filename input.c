@@ -26,7 +26,7 @@ char **get_words(char *string, int word_count) {
       string ++;
     }
     words[i] = string;
-    string += strlen(string);
+    string = strchr(string, '\0');
   }
   return words;
 }
