@@ -25,10 +25,11 @@ char **get_words(char *string, int word_count) {
     while (!*string) {
       string ++;
     }
-    char *word = malloc(sizeof (char[strlen(string) + 1]));
+    int word_length = strlen(string);
+    char *word = malloc(sizeof (char[word_length + 1]));
     strcpy(word, string);
     words[i] = word;
-    string = strchr(string, '\0');
+    string += word_length;
   }
   words[word_count] = NULL;
   return words;
