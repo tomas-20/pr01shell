@@ -19,7 +19,8 @@ int split(char *string) {
   return word_count;
 }
 
-char **get_words(char *string, int word_count) {
+char **get_words(char *string) {
+  int word_count = split(string);
   char **words = malloc(sizeof (char *[word_count + 1]));
   for (int i = 0; i < word_count; i ++) {
     while (!*string) {
@@ -37,8 +38,7 @@ char **get_words(char *string, int word_count) {
 
 char **get_input(char *prompt, int max_size) {
   char *input_string = get_input_string(prompt, max_size);
-  int word_count = split(input_string);
-  char **input = get_words(input_string, word_count);
+  char **input = get_words(input_string);
   free(input_string);
   return input;
 }
