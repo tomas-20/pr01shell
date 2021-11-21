@@ -41,10 +41,18 @@ char **get_input(char *prompt, int max_size) {
   return get_words(input_string, word_count);
 }
 
+void free_strings(char **strings) {
+  for (char **sp = strings; *sp; sp ++) {
+    free(*sp);
+  }
+  free(strings);
+}
+
 int main() {
   char **bobby = get_input("input cheese:", 2187);
-  for (int i = 0; bobby[i]; i ++) {
-    printf("(%s)\n", bobby[i]);
+  for (char **sp = bobby; *sp; sp ++) {
+    printf("(%s)\n", *sp);
   }
+  free_strings(bobby);
   return 0;
 }
