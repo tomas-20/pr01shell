@@ -38,8 +38,9 @@ char **get_words(char *string, int word_count) {
 char **get_input(char *prompt, int max_size) {
   char *input_string = get_input_string(prompt, max_size);
   int word_count = split(input_string);
+  char **input = get_words(input_string, word_count);
   free(input_string);
-  return get_words(input_string, word_count);
+  return input;
 }
 
 void free_strings(char **strings) {
