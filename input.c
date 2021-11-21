@@ -25,7 +25,9 @@ char **get_words(char *string, int word_count) {
     while (!*string) {
       string ++;
     }
-    words[i] = string;
+    char *word = malloc(sizeof (char[strlen(string) + 1]));
+    strcpy(word, string);
+    words[i] = word;
     string = strchr(string, '\0');
   }
   words[word_count] = NULL;
@@ -35,6 +37,7 @@ char **get_words(char *string, int word_count) {
 char **get_input(char *prompt, int max_size) {
   char *input_string = get_input_string(prompt, max_size);
   int word_count = split(input_string);
+  free(input_string);
   return get_words(input_string, word_count);
 }
 
