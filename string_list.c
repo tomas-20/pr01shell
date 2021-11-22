@@ -42,13 +42,13 @@ char *get_path_string(struct string_list *list, char *ending) {
   char *path_string = malloc(sizeof (char[path_string_length + 1]));
   char *sp = path_string;
   *sp = '/';
-  sp ++;
   for (struct string_list_node *node = list->node; node; node = node->next) {
+    sp ++;
     strcpy(sp, node->value);
     sp += node->length;
     *sp = '/';
-    sp ++;
   }
+  sp ++;
   strcpy(sp, ending);
   return path_string;
 }
