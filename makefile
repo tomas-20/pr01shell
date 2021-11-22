@@ -1,9 +1,9 @@
 all: test.o run.o input.o string_list.o
 	gcc test.o run.o input.o string_list.o
 	rm *.o
-test.o: run.h string_list.h
+test.o: run.h
 	gcc -c test.c
-run.o: input.h
+run.o: input.h string_list.h
 	gcc -c run.c
 input.o:
 	gcc -c input.c
