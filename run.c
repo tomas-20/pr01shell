@@ -6,11 +6,18 @@
 #include "input.h"
 #include "string_split.h"
 
+void show_prompt(char *dir) {
+  if (!dir) {
+    dir = "/";
+  }
+  printf("shelly-shell %s: ", dir);
+}
+
 void run() {
   struct string_list *path = get_string_list();
   bool running = true;
   while (running) {
-    printf("input thing: ");
+    show_prompt(get_first_string(path));
     char **input = get_input(2187);
     char *command = input[0];
     if (command) {
