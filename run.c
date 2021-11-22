@@ -10,7 +10,8 @@ void run() {
   struct string_list *path = get_string_list();
   bool running = true;
   while (running) {
-    char **input = get_input("input thing:", 2187);
+    printf("input thing: ");
+    char **input = get_input(2187);
     char *command = input[0];
     if (command) {
       if (!strcmp(command, "exit")) {
