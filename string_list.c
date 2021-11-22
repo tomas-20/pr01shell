@@ -27,6 +27,19 @@ struct string_list *get_string_list() {
   return list;
 }
 
+void free_string_list_node(struct string_list_node *node) {
+  for (struct string_list_node *next_node = node->next; next_node; next_node = next_node->next) {
+    free(node);
+    node = next_node;
+  }
+  free(node);
+}
+
+void free_string_list(struct string_list *list) {
+  free_string_list_node(list->node);
+  free(list);
+}
+
 void add_string(struct string_list *list, char *value) {
   list->node = get_string_list_node(value, list->node);
   list->chrlen += list->node->length + 1;

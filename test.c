@@ -10,5 +10,6 @@ int main() {
   add_string(path, "sir");
   remove_string(path);
   printf("%s\n", get_path_string(path, "epic"));
+  free_string_list(path);
   return 0;
 }
