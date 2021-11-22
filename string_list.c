@@ -54,6 +54,15 @@ void remove_string(struct string_list *list) {
   free(node);
 }
 
+char *get_first_string(struct string_list *list) {
+  if (list->node) {
+    return list->node->value;
+  }
+  else {
+    return NULL;
+  }
+}
+
 char *get_path_string(struct string_list *list, char *ending) {
   int path_string_length = list->chrlen + 1 + strlen(ending);
   char *path_string = malloc(sizeof (char[path_string_length + 1]));
