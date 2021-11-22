@@ -20,13 +20,21 @@ void run() {
         printf("%s\n", get_path_string(path, ""));
       }
       else if (!strcmp(command, "cd")) {
-        char *dir = input[1];
-        if (dir) {
-          if (!strcmp(dir, "..")) {
+        char *arg = input[1];
+        if (arg) {
+          if (!strcmp(arg, "..")) {
             remove_string(path);
           }
-          else if (strcmp(dir, ".")) {
-            add_string(path, dir);
+          else if (strcmp(arg, ".")) {
+            if (arg[0] == '/') {
+              free_string_list(path);
+              path = get_string_list();
+            }
+            char **mini_path = string_split(arg, "/");
+            for (char **sp = mini_path; *sp; sp ++) {
+              add_string(path, *sp);
+            }
+            free_strings(mini_path);
           }
         }
         else {
