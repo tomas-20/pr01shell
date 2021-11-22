@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include "input.h"
 #include "string_list.h"
+#include "input.h"
+#include "string_split.h"
 
 void run() {
   struct string_list *path = get_string_list();

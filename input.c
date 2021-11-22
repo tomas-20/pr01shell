@@ -1,6 +1,7 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
+#include "string_split.h"
 
 char *get_input_string(char *prompt, int max_size) {
   printf("%s ", prompt);
@@ -9,43 +10,9 @@ char *get_input_string(char *prompt, int max_size) {
   return strsep(&input, "\n");
 }
 
-int split(char *string) {
-  int word_count = 0;
-  while (string) {
-    if (*strsep(&string, " ")) {
-      word_count ++;
-    }
-  }
-  return word_count;
-}
-
-char **get_words(char *string) {
-  int word_count = split(string);
-  char **words = malloc(sizeof (char *[word_count + 1]));
-  for (int i = 0; i < word_count; i ++) {
-    while (!*string) {
-      string ++;
-    }
-    int word_length = strlen(string);
-    char *word = malloc(sizeof (char[word_length + 1]));
-    strcpy(word, string);
-    words[i] = word;
-    string += word_length;
-  }
-  words[word_count] = NULL;
-  return words;
-}
-
 char **get_input(char *prompt, int max_size) {
   char *input_string = get_input_string(prompt, max_size);
   char **input = get_words(input_string);
   free(input_string);
   return input;
-}
-
-void free_strings(char **strings) {
-  for (char **sp = strings; *sp; sp ++) {
-    free(*sp);
-  }
-  free(strings);
 }
