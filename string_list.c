@@ -29,11 +29,11 @@ struct string_list *get_string_list() {
 }
 
 void free_string_list_node(struct string_list_node *node) {
-  for (struct string_list_node *next_node = node->next; next_node; next_node = next_node->next) {
+  if (node) {
+    free(node->value);
+    free_string_list_node(node->next);
     free(node);
-    node = next_node;
   }
-  free(node);
 }
 
 void free_string_list(struct string_list *list) {
