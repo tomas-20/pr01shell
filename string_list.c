@@ -38,7 +38,8 @@ void remove_string(struct string_list *list) {
 }
 
 char *get_path_string(struct string_list *list, char *ending) {
-  char *path_string = malloc(sizeof (char[list->chrlen + strlen(ending) + 2]));
+  int path_string_length = list->chrlen + strlen(ending) + 1;
+  char *path_string = malloc(sizeof (char[path_string_length + 1]));
   char *sp = path_string;
   *sp = '/';
   sp ++;
