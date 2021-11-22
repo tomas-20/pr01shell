@@ -14,8 +14,9 @@ struct string_list_node {
 
 struct string_list_node *get_string_list_node(char *value, struct string_list_node *next) {
   struct string_list_node *node = malloc(sizeof (struct string_list_node));
-  node->value = value;
   node->length = strlen(value);
+  node->value = malloc(sizeof (char[node->length + 1]));
+  strcpy(node->value, value);
   node->next = next;
   return node;
 }
