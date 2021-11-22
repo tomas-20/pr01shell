@@ -12,7 +12,7 @@ char *get_input_string(char *prompt, int max_size) {
 
 char **get_input(char *prompt, int max_size) {
   char *input_string = get_input_string(prompt, max_size);
-  char **input = get_words(input_string);
+  char **input = string_split(input_string);
   free(input_string);
   return input;
 }

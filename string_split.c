@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int split(char *string) {
+int get_word_count(char *string) {
   int word_count = 0;
   while (string) {
     if (*strsep(&string, " ")) {
@@ -11,8 +11,8 @@ int split(char *string) {
   return word_count;
 }
 
-char **get_words(char *string) {
-  int word_count = split(string);
+char **string_split(char *string) {
+  int word_count = get_word_count(string);
   char **words = malloc(sizeof (char *[word_count + 1]));
   for (int i = 0; i < word_count; i ++) {
     while (!*string) {

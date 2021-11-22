@@ -1,2 +1,2 @@
-char **get_words(char *);
+char **string_split(char *);
 void free_strings(char **);
