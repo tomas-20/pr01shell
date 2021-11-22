@@ -14,9 +14,9 @@ struct string_list_node {
 
 struct string_list_node *get_string_list_node(char *value, struct string_list_node *next) {
   struct string_list_node *node = malloc(sizeof (struct string_list_node));
-  node->length = strlen(value);
   node->value = malloc(sizeof (char[node->length + 1]));
   strcpy(node->value, value);
+  node->length = strlen(value);
   node->next = next;
   return node;
 }
@@ -55,7 +55,7 @@ void remove_string(struct string_list *list) {
 }
 
 char *get_path_string(struct string_list *list, char *ending) {
-  int path_string_length = list->chrlen + strlen(ending) + 1;
+  int path_string_length = list->chrlen + 1 + strlen(ending);
   char *path_string = malloc(sizeof (char[path_string_length + 1]));
   char *sp = path_string + path_string_length;
   sp -= strlen(ending);
