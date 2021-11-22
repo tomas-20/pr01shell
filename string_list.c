@@ -2,8 +2,8 @@
 #include <string.h>
 
 struct string_list {
-  int chrlen;
   struct string_list_node *node;
+  int chrlen;
 };
 
 struct string_list_node {
@@ -47,8 +47,11 @@ void add_string(struct string_list *list, char *value) {
 }
 
 void remove_string(struct string_list *list) {
-  list->chrlen -= list->node->length + 1;
-  list->node = list->node->next;
+  struct string_list_node *node = list->node;
+  list->node = node->next;
+  list->chrlen -= node->length + 1;
+  free(node->value);
+  free(node);
 }
 
 char *get_path_string(struct string_list *list, char *ending) {
