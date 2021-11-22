@@ -40,15 +40,16 @@ void remove_string(struct string_list *list) {
 char *get_path_string(struct string_list *list, char *ending) {
   int path_string_length = list->chrlen + strlen(ending) + 1;
   char *path_string = malloc(sizeof (char[path_string_length + 1]));
-  char *sp = path_string;
-  *sp = '/';
-  for (struct string_list_node *node = list->node; node; node = node->next) {
-    sp ++;
-    strcpy(sp, node->value);
-    sp += node->length;
-    *sp = '/';
-  }
-  sp ++;
+  char *sp = path_string + path_string_length;
+  sp -= strlen(ending);
   strcpy(sp, ending);
+  for (struct string_list_node *node = list->node; node; node = node->next) {
+    sp --;
+    *sp = '/';
+    sp -= node->length;
+    strncpy(sp, node->value, node->length);
+  }
+  sp --;
+  *sp = '/';
   return path_string;
 }
