@@ -8,6 +8,7 @@ int main() {
   add_string(path, "there");
   add_string(path, "good");
   add_string(path, "sir");
+  remove_string(path);
   printf("%s\n", get_path_string(path, "epic"));
   return 0;
 }
