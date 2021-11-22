@@ -13,6 +13,15 @@ void show_prompt(char *dir) {
   printf("shelly-shell %s: ", dir);
 }
 
+void cd(struct string_list *path, char *dir) {
+  if (!strcmp(dir, "..")) {
+    remove_string(path);
+  }
+  else if (strcmp(dir, ".")) {
+    add_string(path, dir);
+  }
+}
+
 void run() {
   struct string_list *path = get_string_list();
   bool running = true;
@@ -29,25 +38,16 @@ void run() {
       }
       else if (!strcmp(command, "cd")) {
         char *arg = input[1];
-        if (arg) {
-          if (!strcmp(arg, "..")) {
-            remove_string(path);
-          }
-          else if (strcmp(arg, ".")) {
-            if (arg[0] == '/') {
-              free_string_list(path);
-              path = get_string_list();
-            }
-            char **mini_path = string_split(arg, "/");
-            for (char **sp = mini_path; *sp; sp ++) {
-              add_string(path, *sp);
-            }
-            free_strings(mini_path);
-          }
-        }
-        else {
+        if (!arg || arg[0] == '/') {
           free_string_list(path);
           path = get_string_list();
+        }
+        if (arg) {
+          char **mini_path = string_split(arg, "/");
+          for (char **sp = mini_path; *sp; sp ++) {
+            cd(path, *sp);
+          }
+          free_strings(mini_path);
         }
       }
     }
