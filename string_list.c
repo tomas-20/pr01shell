@@ -27,12 +27,12 @@ struct string_list *get_string_list() {
   return list;
 }
 
-void add_value(struct string_list *list, char *value) {
+void add_string(struct string_list *list, char *value) {
   list->node = get_string_list_node(value, list->node);
   list->chrlen += list->node->length + 1;
 }
 
-void remove_value(struct string_list *list) {
+void remove_string(struct string_list *list) {
   list->chrlen -= list->node->length + 1;
   list->node = list->node->next;
 }

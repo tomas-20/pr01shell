@@ -4,6 +4,6 @@ struct string_list_node {
   struct string_list_node *next;
 };
 struct string_list *get_string_list();
-void add_value(struct string_list *, char *);
-void remove_value(struct string_list *);
+void add_string(struct string_list *, char *);
+void remove_string(struct string_list *);
 char *get_path_string(struct string_list *, char *);
