@@ -11,3 +11,9 @@ input.o: string_split.h
 	gcc -c input.c
 string_split.o:
 	gcc -c string_split.c
+
+test: execute.o
+	gcc execute.o
+	rm *.o
+execute.o:
+	gcc -c execute.c
