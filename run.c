@@ -39,8 +39,7 @@ void run() {
       else if (!strcmp(command, "cd")) {
         char *arg = input[1];
         if (!arg || arg[0] == '/') {
-          free_string_list(path);
-          path = get_string_list();
+          empty_string_list(path);
         }
         if (arg) {
           char **mini_path = string_split(arg, "/");
