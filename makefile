@@ -1,8 +1,8 @@
-all: test.o run.o string_list.o input.o string_split.o
-	gcc test.o run.o string_list.o input.o string_split.o
+all: main.o run.o string_list.o input.o string_split.o
+	gcc main.o run.o string_list.o input.o string_split.o
 	rm *.o
-test.o: run.h
-	gcc -c test.c
+main.o: run.h
+	gcc -c main.c
 run.o: string_list.h input.h string_split.h
 	gcc -c run.c
 string_list.o:
