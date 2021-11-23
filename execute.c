@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-//#include "string_split.h"
+#include "string_split.h"
 
 void debug(int argc, char * argv[], int x) {
     if (x) {
@@ -14,47 +14,6 @@ void debug(int argc, char * argv[], int x) {
         }
     }
 }
-
-//toams' string_split
-int get_word_count(char *string, char *delim) {
-  int word_count = 0;
-  while (string) {
-    if (*strsep(&string, delim)) {
-      word_count ++;
-    }
-  }
-  return word_count;
-}
-
-char **string_split(char *string, char *delim) {
-  int word_count = get_word_count(string, delim);
-  char **words = malloc(sizeof (char *[word_count + 1]));
-  for (int i = 0; i < word_count; i ++) {
-    while (!*string) {
-      string ++;
-    }
-    int word_length = strlen(string);
-    char *word = malloc(sizeof (char[word_length + 1]));
-    strcpy(word, string);
-    words[i] = word;
-    string += word_length;
-  }
-  words[word_count] = NULL;
-  return words;
-}
-
-void free_strings(char **strings) {
-  for (char **sp = strings; *sp; sp ++) {
-    free(*sp);
-  }
-  free(strings);
-}
-//end
-
-
-
-
-
 
 int n_of_char(char * s, char c) {
     int i;
