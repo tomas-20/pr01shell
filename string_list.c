@@ -21,19 +21,19 @@ struct string_list_node *get_string_list_node(char *value, struct string_list_no
   return node;
 }
 
-struct string_list *get_string_list() {
-  struct string_list *list = malloc(sizeof (struct string_list));
-  list->node = NULL;
-  list->chrlen = 0;
-  return list;
-}
-
 void free_string_list_node(struct string_list_node *node) {
   if (node) {
     free(node->value);
     free_string_list_node(node->next);
     free(node);
   }
+}
+
+struct string_list *get_string_list() {
+  struct string_list *list = malloc(sizeof (struct string_list));
+  list->node = NULL;
+  list->chrlen = 0;
+  return list;
 }
 
 void empty_string_list(struct string_list *list) {
