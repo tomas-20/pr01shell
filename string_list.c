@@ -21,25 +21,11 @@ struct string_list_node *get_string_list_node(char *value, struct string_list_no
   return node;
 }
 
-void free_string_list_node(struct string_list_node *node) {
-  if (node) {
-    free(node->value);
-    free_string_list_node(node->next);
-    free(node);
-  }
-}
-
 struct string_list *get_string_list() {
   struct string_list *list = malloc(sizeof (struct string_list));
   list->node = NULL;
   list->chrlen = 0;
   return list;
-}
-
-void empty_string_list(struct string_list *list) {
-  free_string_list_node(list->node);
-  list->node = NULL;
-  list->chrlen = 0;
 }
 
 void add_string(struct string_list *list, char *value) {
@@ -53,6 +39,12 @@ void remove_string(struct string_list *list) {
   list->chrlen -= node->length + 1;
   free(node->value);
   free(node);
+}
+
+void empty_string_list(struct string_list *list) {
+  while (list->node) {
+    remove_string(list);
+  }
 }
 
 char *get_first_string(struct string_list *list) {
