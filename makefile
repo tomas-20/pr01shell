@@ -11,7 +11,7 @@ clean:
 
 main.o: run.h
 	gcc -c main.c
-run.o: input.h string_split.h
+run.o: input.h
 	gcc -c run.c
 input.o: string_split.h
 	gcc -c input.c

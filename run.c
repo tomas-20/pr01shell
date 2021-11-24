@@ -4,7 +4,6 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include "input.h"
-#include "string_split.h"
 
 void show_prompt() {
   char *path = getcwd(NULL, 0);

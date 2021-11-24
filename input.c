@@ -15,3 +15,10 @@ char **get_input(int max_size) {
   free(input_string);
   return input;
 }
+
+void free_strings(char **strings) {
+  for (char **sp = strings; *sp; sp ++) {
+    free(*sp);
+  }
+  free(strings);
+}

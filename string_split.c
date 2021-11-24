@@ -27,10 +27,3 @@ char **string_split(char *string, char *delim) {
   words[word_count] = NULL;
   return words;
 }
-
-void free_strings(char **strings) {
-  for (char **sp = strings; *sp; sp ++) {
-    free(*sp);
-  }
-  free(strings);
-}
