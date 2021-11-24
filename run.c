@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 #include <unistd.h>
 #include "input.h"
 
@@ -11,15 +10,14 @@ void show_prompt() {
   free(path);
 }
 
-void run() {
-  bool running = true;
-  while (running) {
+int main() {
+  while (1) {
     show_prompt();
     char **input = get_input(2187);
     char *command = input[0];
     if (command) {
       if (!strcmp(command, "exit")) {
-        running = false;
+        return 0;
       }
       else if (!strcmp(command, "cd")) {
         char *mini_path = input[1];

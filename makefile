@@ -1,5 +1,5 @@
-all: main.o run.o input.o string_split.o
-	gcc main.o run.o input.o string_split.o
+all: run.o input.o string_split.o
+	gcc run.o input.o string_split.o
 	rm *.o
 
 test: execute.o string_split.o
@@ -9,8 +9,6 @@ test: execute.o string_split.o
 clean:
 	rm *.o
 
-main.o: run.h
-	gcc -c main.c
 run.o: input.h
 	gcc -c run.c
 input.o: string_split.h
