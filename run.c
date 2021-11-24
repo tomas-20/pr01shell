@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include "input.h"
+#include <sys/wait.h>
 
 void show_prompt() {
   char *path = getcwd(NULL, 0);
@@ -23,7 +24,19 @@ int main() {
         char *mini_path = input[1];
         chdir(mini_path);
       }
+      else {
+      	int pid = fork();
+        if (pid == 0){
+            execvp(input[0], &input[0]);
+            //errno
+            exit(0);
+        } else {
+            wait(NULL);
+        }
+      }
     }
     free_strings(input);
   }
 }
+
+
