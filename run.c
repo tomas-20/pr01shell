@@ -6,7 +6,7 @@
 
 void show_prompt() {
   char *path = getcwd(NULL, 0);
-  printf("shelly-shell %s: ", path);
+  printf("\e[32mshelly-shell \e[34m%s\e[0m: ", path);
   free(path);
 }
 
