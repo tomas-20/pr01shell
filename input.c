@@ -9,8 +9,8 @@ char *get_input_string(int max_size) {
   return strsep(&input, "\n");
 }
 
-char **get_input(int max_size) {
-  char *input_string = get_input_string(max_size);
+char **get_input() {
+  char *input_string = get_input_string(2187);
   char **input = string_split(input_string, " ");
   free(input_string);
   return input;

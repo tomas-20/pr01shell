@@ -13,7 +13,7 @@ void show_prompt() {
 int main() {
   while (1) {
     show_prompt();
-    char **input = get_input(2187);
+    char **input = get_input();
     char *command = input[0];
     if (command) {
       if (!strcmp(command, "exit")) {
