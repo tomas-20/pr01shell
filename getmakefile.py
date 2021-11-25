@@ -1,3 +1,8 @@
+from sys import argv
+
+def mapa(*args):
+    return list(map(*args))
+
 def same(thing):
     return thing
 
@@ -19,15 +24,22 @@ def get_deps(file_name):
     with open(file_name_c) as file:
         text = file.read()
     lines = text.split('\n')
-    wordss = map(get_words, lines)
-    return filtrar(map(get_dep, wordss))
+    wordss = mapa(get_words, lines)
+    return filtrar(mapa(get_dep, wordss))
 
 def add_h(file_name):
     return file_name + '.h'
 
-def get_file_code(file_name, deps):
-    dep_string = ' '.join(map(add_h, deps))
-    return f'{file_name}.o: dep_string\n\tgcc -c {file_name}.c'
+def get_file_code(file_name):
+    dep_string = ' '.join(mapa(add_h, get_deps(file_name)))
+    return f'{file_name}.o: {dep_string}\n\tgcc -c {file_name}.c'
+
+def add_o(file_name):
+    return file_name + '.o'
+
+def get_option_code(option, file_name):
+    all_dep_string = ' '.join(mapa(add_o, get_all_deps([file_name])))
+    return f'{option}: {all_dep_string}\n\tgcc {all_dep_string}\n\trm *.o'
 
 def fill_all_deps(all_deps, file_name):
     deps = get_deps(file_name)
@@ -42,7 +54,20 @@ def get_all_deps(file_names):
         fill_all_deps(all_deps, file_name)
     return all_deps
 
-from sys import argv
-all_deps = get_all_deps(argv[1:])
-for dep in all_deps:
-    print(dep)
+def get_code(options, file_names):
+    option_code = '\n'.join(mapa(get_option_code, options, file_names))
+    file_code = '\n'.join(mapa(get_file_code, get_all_deps(file_names)))
+    return option_code + '\nclean:\n\trm *.o\n\n' + file_code
+
+def get_pair(arg):
+    return arg.split(':')
+
+def get_option(pair):
+    return pair[0]
+
+def get_file_name(pair):
+    return pair[1]
+
+pairs = mapa(get_pair, argv[1:])
+code = get_code(mapa(get_option, pairs), mapa(get_file_name, pairs))
+print(code)
