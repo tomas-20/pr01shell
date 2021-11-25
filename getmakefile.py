@@ -57,7 +57,7 @@ def get_all_deps(file_names):
 def get_code(options, file_names):
     option_code = '\n'.join(mapa(get_option_code, options, file_names))
     file_code = '\n'.join(mapa(get_file_code, get_all_deps(file_names)))
-    return option_code + '\nclean:\n\trm *.o\n\n' + file_code
+    return option_code + '\nclean:\n\trm *.o\n\n' + file_code + '\n'
 
 def get_pair(arg):
     return arg.split(':')
@@ -70,4 +70,5 @@ def get_file_name(pair):
 
 pairs = mapa(get_pair, argv[1:])
 code = get_code(mapa(get_option, pairs), mapa(get_file_name, pairs))
-print(code)
+with open('makefile', 'w') as file:
+    file.write(code)
