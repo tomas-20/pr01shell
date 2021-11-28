@@ -19,8 +19,7 @@ char **string_split(char *string, char *delim) {
       string ++;
     }
     int word_length = strlen(string);
-    words[i] = malloc(sizeof (char[word_length + 1]));
-    strcpy(words[i], string);
+    words[i] = strcpy(malloc(sizeof (char[word_length + 1])), string);
     string += word_length;
   }
   words[word_count] = NULL;
