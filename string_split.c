@@ -18,9 +18,10 @@ char **string_split(char *string, char *delim) {
     while (!*string) {
       string ++;
     }
-    int word_length = strlen(string);
-    words[i] = strcpy(malloc(sizeof (char[word_length + 1])), string);
-    string += word_length;
+    words[i] = strcpy(malloc(sizeof (char[strlen(string) + 1])), string);
+    while (*string) {
+      string ++;
+    }
   }
   words[word_count] = NULL;
   return words;
