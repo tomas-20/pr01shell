@@ -5,7 +5,7 @@
 
 char *get_input_string() {
   char *input = malloc(sizeof (char[2187]));
-  fgets(input, max_size, stdin);
+  fgets(input, 2187, stdin);
   return strsep(&input, "\n");
 }
 
