@@ -16,6 +16,7 @@ int main() {
     show_prompt();
     char **input = get_input();
     char *command = input[0];
+
     if (command) {
       if (!strcmp(command, "exit")) {
         return 0;
@@ -28,7 +29,7 @@ int main() {
       	int pid = fork();
         if (pid == 0){
             execvp(input[0], &input[0]);
-            //errno
+            printf("Error: %s\n", strerror(errno));
             exit(0);
         } else {
             wait(NULL);
