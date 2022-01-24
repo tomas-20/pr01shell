@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include "input.h"
 #include <sys/wait.h>
+#include <errno.h>
 
 void show_prompt() {
   char *path = getcwd(NULL, 0);
@@ -39,5 +40,3 @@ int main() {
     free_strings(input);
   }
 }
-
-
